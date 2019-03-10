@@ -143,6 +143,11 @@ function generatePositions(num) {
     console.log("num", num);
     num_ = parseInt(num);
     switch(num_) {
+        case    2:
+            generateOne_TwoPositon(1, left_, top_, halfwidth, halfheight);
+            generateOne_TwoPositon(1, left_ + halfwidth, top_ + halfheight, halfwidth, halfheight);
+            return;
+
         case    3:
             generateOne_TwoPositon(1, left_, top_, halfwidth, halfheight);
             generateOne_TwoPositon(1, left_ + halfwidth, top_, halfwidth, halfheight);
@@ -589,8 +594,6 @@ function drop(ev) {
     }
 }
 
-
-
   function DoNothing()
   {
         //alert("delayed");
@@ -632,7 +635,12 @@ function drop(ev) {
     Pairs = []
 
     console.log("currentNumOfActor", currentNumOfActor);
-    if( currentNumOfActor == 3) {
+    if( currentNumOfActor == 2) {
+        MakeAChat("Person_0", "Person_1");
+        setTimeout(DoNothing, delaymsecs);
+        delay(delaymsecs);
+    }
+    else if( currentNumOfActor == 3) {
         MakeAChat("Person_0", "Person_1");
         setTimeout(DoNothing, delaymsecs);
         delay(delaymsecs);
@@ -695,7 +703,15 @@ function drop(ev) {
 
       clearTimeout(mytimer);
 
-      if(currentNumOfActor == 3) {
+      if(currentNumOfActor == 2) {
+        if(totalChat > 2) {
+          alert("Not good enough!");
+        } else {
+          message = "You made it in " + Elapsed + " seconds!";
+          alert(message );
+        }
+    }
+    else if(currentNumOfActor == 3) {
           if(totalChat > 3) {
             alert("Not good enough!");
           } else {
